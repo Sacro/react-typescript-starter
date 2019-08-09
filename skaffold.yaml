@@ -1,0 +1,19 @@
+---
+
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  artifacts:
+    - image: localhost:32000/web
+      context: .
+      docker:
+        target: prebuild
+
+      sync:
+        manual:
+          # Sync all the typescript files that are in the src folder
+          # with the container src folder
+          - src: 'src/**/*.*'
+            dest: .
+  tagPolicy:
+    sha256: {}
