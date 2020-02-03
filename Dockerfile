@@ -10,7 +10,7 @@ CMD ["yarn", "run", "start"]
 FROM prebuild as build
 USER node
 WORKDIR /home/node/app
-RUN yarn run build
+RUN yarn build
 
 FROM nginx:stable as deploy
 COPY --from=build /home/node/app/build /usr/share/nginx/html
